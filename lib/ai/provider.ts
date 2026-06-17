@@ -291,49 +291,6 @@ export async function generateContent(req: GenerateRequest): Promise<GenerateRes
       return generateWithMistral(prompt, sysText, maxTokens, model, modelConfig.mistralModel)
     }
 
-    if (model === 'claude') {
-      if (!hasEnv('ANTHROPIC_API_KEY')) {
-        return generateWithFallbackGroq(prompt, sysText, maxTokens)
-      }
-
-      const Anthropic = (await import('@anthropic-ai/sdk')).default
-      const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
-      const response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-5',
-        max_tokens: maxTokens,
-        system: [
-          {
-            type: 'text',
-            text: sysText,
-            cache_control: { type: 'ephemeral' },
-          },
-        ],
-        messages: [{ role: 'user', content: prompt }],
-      })
-      const content = response.content[0].type === 'text' ? response.content[0].text : ''
-      const tokensUsed = response.usage.input_tokens + response.usage.output_tokens
-      return { content, model, tokensUsed }
-    }
-
-    if (model === 'gpt4o') {
-      if (!hasEnv('OPENAI_API_KEY')) {
-        return generateWithGroq(prompt, sysText, maxTokens, 'groq-gpt-oss-120b', 'openai/gpt-oss-120b')
-      }
-
-      const OpenAI = (await import('openai')).default
-      const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-      const response = await openai.chat.completions.create({
-        model: 'gpt-4o',
-        max_tokens: maxTokens,
-        messages: [
-          { role: 'system', content: sysText },
-          { role: 'user', content: prompt },
-        ],
-      })
-      const content = response.choices[0].message.content || ''
-      return { content, model, tokensUsed: response.usage?.total_tokens }
-    }
-
     throw new Error(`Bilinmeyen model: ${model}`)
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Bilinmeyen hata'

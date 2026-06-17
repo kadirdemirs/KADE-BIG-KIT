@@ -11,16 +11,15 @@ import {
   getModelConfig,
 } from '@/lib/ai/models'
 import {
-  Brain,
   Check,
   ChevronDown,
-  Cpu,
   Gauge,
   Gem,
   Globe2,
   Route,
   Sparkles,
   Zap,
+  Cpu,
 } from 'lucide-react'
 
 interface ModelSelectorProps {
@@ -39,8 +38,6 @@ const providerIcons: Record<ModelProviderId | 'all', typeof Cpu> = {
   openrouter: Route,
   google: Gem,
   mistral: Globe2,
-  anthropic: Brain,
-  openai: Cpu,
 }
 
 const speedLabels = {

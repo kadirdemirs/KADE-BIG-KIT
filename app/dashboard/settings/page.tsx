@@ -60,28 +60,6 @@ const KEY_DEFS = [
     models: ['NeMo', 'Magistral', 'Codestral'],
   },
   {
-    id: 'ANTHROPIC_API_KEY',
-    label: 'Anthropic (Claude)',
-    placeholder: 'sk-ant-...',
-    url: 'https://console.anthropic.com/settings/keys',
-    urlLabel: 'console.anthropic.com',
-    color: 'text-orange-400',
-    dot: 'bg-orange-400',
-    models: ['Claude Sonnet 4.5'],
-    optional: true,
-  },
-  {
-    id: 'OPENAI_API_KEY',
-    label: 'OpenAI (GPT-4o + TTS)',
-    placeholder: 'sk-...',
-    url: 'https://platform.openai.com/api-keys',
-    urlLabel: 'platform.openai.com',
-    color: 'text-emerald-400',
-    dot: 'bg-emerald-400',
-    models: ['GPT-4o', 'TTS-1-HD'],
-    optional: true,
-  },
-  {
     id: 'GEMINI_API_KEY',
     label: 'Google (Gemini)',
     placeholder: 'AIza...',
@@ -125,8 +103,6 @@ export default function SettingsPage() {
     CEREBRAS_API_KEY: false,
     OPENROUTER_API_KEY: false,
     MISTRAL_API_KEY: false,
-    ANTHROPIC_API_KEY: false,
-    OPENAI_API_KEY: false,
     GEMINI_API_KEY: false,
     NEXT_PUBLIC_SUPABASE_URL: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -158,7 +134,7 @@ export default function SettingsPage() {
   const toggleShow = (id: string) =>
     setShowKeys((prev) => ({ ...prev, [id]: !prev[id] }))
 
-  const requiredKeyDefs = KEY_DEFS.filter((k) => !k.optional)
+  const requiredKeyDefs = KEY_DEFS
   const configuredCount = requiredKeyDefs.filter((k) =>
     isElectron ? !!config[k.id] : serverEnvStatus[k.id]
   ).length
@@ -266,14 +242,11 @@ export default function SettingsPage() {
               <div className="space-y-3">
                 {KEY_DEFS.map((k) => {
                   const ok = serverEnvStatus[k.id] ?? false
-                  const optionalMissing = !ok && k.optional
                   return (
                     <div key={k.id} className={cn('rounded-xl border p-4 space-y-2',
                       ok
                         ? 'border-zinc-700/50 bg-zinc-800/30'
-                        : optionalMissing
-                          ? 'border-amber-500/20 bg-amber-500/5'
-                          : 'border-red-500/20 bg-red-500/5')}>
+                        : 'border-red-500/20 bg-red-500/5')}>
                       <div className="flex items-center gap-2">
                         <span className={cn('w-2.5 h-2.5 rounded-full', k.dot)} />
                         <span className={cn('text-sm font-medium', k.color)}>{k.label}</span>
@@ -282,8 +255,6 @@ export default function SettingsPage() {
                             ? <span className="text-zinc-500">Kontrol ediliyor</span>
                             : ok
                             ? <><CheckCircle className="w-3.5 h-3.5 text-emerald-400" /><span className="text-emerald-400">Yapılandırıldı</span></>
-                            : optionalMissing
-                              ? <span className="text-amber-500">Opsiyonel</span>
                             : <><XCircle className="w-3.5 h-3.5 text-red-400" /><span className="text-red-400">Eksik</span></>
                           }
                         </span>

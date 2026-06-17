@@ -1,6 +1,6 @@
 import { AIModel } from '@/types'
 
-export type ModelProviderId = 'groq' | 'cerebras' | 'openrouter' | 'anthropic' | 'openai' | 'google' | 'mistral'
+export type ModelProviderId = 'groq' | 'cerebras' | 'openrouter' | 'google' | 'mistral'
 export type ModelSpeed = 'fastest' | 'fast' | 'balanced'
 
 export interface ModelConfig {
@@ -52,12 +52,12 @@ function style(color: keyof typeof classes) {
 }
 
 export const MODEL_PROVIDER_GROUPS: ModelProviderGroup[] = [
-  { id: 'all', label: 'Hepsi', description: 'Calisan ve opsiyonel modeller' },
-  { id: 'cerebras', label: 'Cerebras', description: 'En hizli inference' },
-  { id: 'groq', label: 'Groq', description: 'Dusuk gecikme' },
-  { id: 'openrouter', label: 'OpenRouter', description: 'Free router ve kredi modelleri' },
-  { id: 'google', label: 'Gemini', description: 'Google Flash ailesi' },
-  { id: 'mistral', label: 'Mistral', description: 'NeMo, reasoning ve code' },
+  { id: 'all',        label: 'Hepsi',      description: 'Tum ucretsiz modeller' },
+  { id: 'cerebras',   label: 'Cerebras',   description: 'En hizli inference' },
+  { id: 'groq',       label: 'Groq',       description: 'Dusuk gecikme, ucretsiz' },
+  { id: 'openrouter', label: 'OpenRouter', description: 'Ucretsiz router modelleri' },
+  { id: 'google',     label: 'Gemini',     description: 'Google Flash ailesi, ucretsiz' },
+  { id: 'mistral',    label: 'Mistral',    description: 'NeMo, reasoning ve code' },
 ]
 
 export const MODEL_CONFIGS: Record<AIModel, ModelConfig> = {
@@ -219,47 +219,6 @@ export const MODEL_CONFIGS: Record<AIModel, ModelConfig> = {
     badge: 'Buyuk',
     ...style('rose'),
   },
-  'openrouter-deepseek-r1': {
-    id: 'openrouter-deepseek-r1',
-    label: 'DeepSeek R1 (OpenRouter)',
-    shortLabel: 'DeepSeek R1',
-    description: 'Kredi eklendiginde tam R1 reasoning modeli',
-    provider: 'openrouter',
-    openRouterModel: 'deepseek/deepseek-r1',
-    free: false,
-    speed: 'balanced',
-    speedLabel: 'Kredi',
-    contextLabel: 'R1',
-    badge: 'Reasoning',
-    ...style('blue'),
-  },
-  'openrouter-llama4': {
-    id: 'openrouter-llama4',
-    label: 'Llama 4 Maverick (OpenRouter)',
-    shortLabel: 'Llama 4 OR',
-    description: 'Kredi gerektiren genis context Llama 4 modeli',
-    provider: 'openrouter',
-    openRouterModel: 'meta-llama/llama-4-maverick',
-    free: false,
-    speed: 'balanced',
-    speedLabel: 'Kredi',
-    contextLabel: '1M',
-    ...style('amber'),
-  },
-  'openrouter-qwen3-235b': {
-    id: 'openrouter-qwen3-235b',
-    label: 'Qwen3 235B A22B (OpenRouter)',
-    shortLabel: 'Qwen3 235B',
-    description: 'Kredi gerektiren buyuk Qwen modeli',
-    provider: 'openrouter',
-    openRouterModel: 'qwen/qwen3-235b-a22b',
-    free: false,
-    speed: 'balanced',
-    speedLabel: 'Kredi',
-    contextLabel: '235B',
-    badge: 'En Buyuk',
-    ...style('rose'),
-  },
   'gemini-flash': {
     id: 'gemini-flash',
     label: 'Gemini 2.5 Flash',
@@ -416,44 +375,9 @@ export const MODEL_CONFIGS: Record<AIModel, ModelConfig> = {
     badge: 'Code',
     ...style('teal'),
   },
-  claude: {
-    id: 'claude',
-    label: 'Claude Sonnet',
-    shortLabel: 'Claude',
-    description: 'Premium kalite, ANTHROPIC_API_KEY gerekli',
-    provider: 'anthropic',
-    free: false,
-    speed: 'balanced',
-    speedLabel: 'Premium',
-    ...style('orange'),
-  },
-  gpt4o: {
-    id: 'gpt4o',
-    label: 'GPT-4o',
-    shortLabel: 'GPT-4o',
-    description: 'OpenAI flagship, OPENAI_API_KEY gerekli',
-    provider: 'openai',
-    free: false,
-    speed: 'balanced',
-    speedLabel: 'Premium',
-    ...style('emerald'),
-  },
-  gemini: {
-    id: 'gemini',
-    label: 'Gemini Pro',
-    shortLabel: 'Gemini Pro',
-    description: 'Google premium Gemini, GEMINI_API_KEY gerekli',
-    provider: 'google',
-    geminiModel: 'gemini-2.5-pro',
-    free: false,
-    speed: 'balanced',
-    speedLabel: 'Premium',
-    contextLabel: '1M',
-    ...style('blue'),
-  },
 }
 
-export const WORKING_MODELS: AIModel[] = [
+export const FREE_MODELS: AIModel[] = [
   'cerebras-glm-4-7',
   'cerebras-gpt-oss-120b',
   'groq-llama-70b',
@@ -480,16 +404,8 @@ export const WORKING_MODELS: AIModel[] = [
   'mistral-devstral',
 ]
 
-export const CREDIT_MODELS: AIModel[] = [
-  'openrouter-deepseek-r1',
-  'openrouter-llama4',
-  'openrouter-qwen3-235b',
-]
-
-export const PREMIUM_MODELS: AIModel[] = ['claude', 'gpt4o', 'gemini']
-
-export const FREE_MODELS: AIModel[] = WORKING_MODELS
-export const SELECTABLE_MODELS: AIModel[] = [...WORKING_MODELS, ...CREDIT_MODELS, ...PREMIUM_MODELS]
+export const WORKING_MODELS = FREE_MODELS
+export const SELECTABLE_MODELS: AIModel[] = FREE_MODELS
 export const FREE_GROQ_MODELS: AIModel[] = FREE_MODELS
 
 export const COMPARE_MODELS: AIModel[] = [
