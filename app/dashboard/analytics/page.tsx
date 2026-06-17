@@ -86,8 +86,8 @@ export default function AnalyticsPage() {
     <div className="flex flex-col h-full">
       <TopBar title="Analitik Dashboard" description="Metriklerini gir, AI büyüme stratejisi öner" />
       <div className="flex-1 overflow-y-auto">
-        <div className="flex gap-6 p-6">
-          <div className="w-80 flex-shrink-0 space-y-4">
+        <div className="flex flex-col lg:flex-row gap-6 p-4 sm:p-6">
+          <div className="w-full lg:w-80 flex-shrink-0 space-y-4">
             <div>
               <label className="block text-zinc-400 text-xs font-medium mb-1.5">Platform</label>
               <div className="grid grid-cols-3 gap-1.5">

@@ -7,7 +7,7 @@ const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
 
 export const viewport: Viewport = {
-  themeColor: '#f7f9fc',
+  themeColor: '#09090b',
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   other: {
     'mobile-web-app-capable': 'yes',
-    'msapplication-TileColor': '#f7f9fc',
+    'msapplication-TileColor': '#09090b',
     'msapplication-TileImage': '/icons/icon-192.png',
   },
 }

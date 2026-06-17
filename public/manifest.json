@@ -1,29 +1,61 @@
 {
-  "name": "ContentAI Studio",
-  "short_name": "ContentAI",
-  "description": "AI destekli sosyal medya icerik uretim platformu",
+  "name": "KadeAI Studio",
+  "short_name": "KadeAI",
+  "description": "AI destekli sosyal medya içerik üretim platformu — 70+ araç",
   "id": "/dashboard",
   "start_url": "/dashboard",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f7f9fc",
-  "theme_color": "#f7f9fc",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
   "orientation": "any",
+  "lang": "tr",
+  "categories": ["productivity", "utilities"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "categories": ["productivity", "utilities"],
-  "lang": "tr",
-  "prefer_related_applications": false
+  "shortcuts": [
+    {
+      "name": "Başlık Üretici",
+      "short_name": "Başlık",
+      "url": "/dashboard/title",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Script Yazarı",
+      "short_name": "Script",
+      "url": "/dashboard/script",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Hashtag AI",
+      "short_name": "Hashtag",
+      "url": "/dashboard/hashtag",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
 }

@@ -15,7 +15,7 @@ import {
   Copy, BookMarked, Cpu, Activity, Library, ChevronRight,
   Video, Music, Palette, Type, ZoomIn, Flame,
   Repeat, ShieldAlert, List, Maximize, Clapperboard,
-  Globe, LineChart, Brain, Bell, MonitorPlay, LayoutDashboard,
+  Globe, LineChart, Brain, Bell, MonitorPlay, LayoutDashboard, Languages,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSidebar } from '@/lib/context/SidebarContext'
@@ -57,6 +57,7 @@ const navItems = [
       { id: 'broll',          label: 'B-Roll Shot List',   href: '/dashboard/broll',          icon: Film       },
       { id: 'story-series',   label: 'Story Dizisi',       href: '/dashboard/story-series',   icon: Layers     },
       { id: 'dubbing',        label: 'Dublaj & Çeviri',    href: '/dashboard/dubbing',        icon: Mic2       },
+      { id: 'translate',      label: 'Çeviri & Yerelleştir', href: '/dashboard/translate',     icon: Languages  },
     ],
   },
   {
