@@ -3,12 +3,9 @@ const ENV_KEYS = [
   'CEREBRAS_API_KEY',
   'OPENROUTER_API_KEY',
   'MISTRAL_API_KEY',
-  'ANTHROPIC_API_KEY',
-  'OPENAI_API_KEY',
   'GEMINI_API_KEY',
   'NEXT_PUBLIC_SUPABASE_URL',
   'NEXT_PUBLIC_SUPABASE_ANON_KEY',
-  'NEXT_PUBLIC_SITE_URL',
 ] as const
 
 export const dynamic = 'force-dynamic'

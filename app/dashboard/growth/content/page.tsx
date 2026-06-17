@@ -37,7 +37,7 @@ export default function ContentPerformancePage() {
   useEffect(() => {
     fetch('/api/history')
       .then(r => r.json())
-      .then(data => setItems(Array.isArray(data) ? data : []))
+      .then(data => setItems(Array.isArray(data?.history) ? data.history : []))
       .catch(() => setItems([]))
       .finally(() => setLoading(false))
   }, [])
