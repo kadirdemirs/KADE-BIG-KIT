@@ -14,7 +14,7 @@ export default function InsightsPage() {
     setError(null)
     setInsight(null)
     try {
-      const res = await fetch(`http://localhost:8472/insights/generate`, {
+      const res = await fetch(`/api/generate/insights`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ period }),
@@ -23,10 +23,10 @@ export default function InsightsPage() {
       if (res.ok) {
         setInsight(data.summary ?? JSON.stringify(data, null, 2))
       } else {
-        setError(data.detail ?? 'Hata oluştu')
+        setError(data.error ?? 'Hata oluştu')
       }
     } catch {
-      setError('Growth backend\'e bağlanılamadı (port 8472). python main.py komutunu çalıştır.')
+      setError('İçgörü oluşturulamadı. Lütfen tekrar dene.')
     } finally {
       setLoading(false)
     }

@@ -13,15 +13,15 @@ export default function ReportsPage() {
     setError(null)
     setReport(null)
     try {
-      const res = await fetch('http://localhost:8472/reports/weekly', { method: 'POST' })
+      const res = await fetch('/api/generate/reports', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ period: 'weekly' }) })
       const data = await res.json()
       if (res.ok) {
         setReport(data.report ?? JSON.stringify(data, null, 2))
       } else {
-        setError(data.detail ?? 'Rapor oluşturulamadı')
+        setError(data.error ?? 'Rapor oluşturulamadı')
       }
     } catch {
-      setError('Growth backend\'e bağlanılamadı (port 8472). python main.py komutunu çalıştır.')
+      setError('Rapor oluşturulamadı. Lütfen tekrar dene.')
     } finally {
       setLoading(false)
     }
